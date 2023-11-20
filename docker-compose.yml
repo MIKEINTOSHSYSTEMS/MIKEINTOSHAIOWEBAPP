@@ -1,0 +1,65 @@
+# Copyright VMware, Inc.
+# SPDX-License-Identifier: APACHE-2.0
+# Identifier: MIKEINTOSH SYSTEMS AIO Web Application
+
+version: '2'
+services:
+  mysql:
+    image: docker.io/bitnami/mysql:8.0
+    volumes:
+      #- type: local
+       # source: ./mikeintoshsqldata #used only for local dev uncomment the script to deploy to local
+        #target: /bitnami/mysql  #used only for local dev uncomment the script to deploy to local
+
+      - 'mysql_data:/bitnami/mysql'  #no use and is only for duplicate mount point 
+      #- '/your/remote/path:/bitnami/mysql'   #used only for remote dev uncomment the script to deploy to remote
+      - './mikeintoshwebdata:/bitnami/mysql'
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+      - MYSQL_USER=mikeintoshaio
+      - MYSQL_DATABASE=mikeintoshaio
+      - MYSQL_PASSWORD=mikeintoshaio
+    #restart: always
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    ports:
+      - 3388:80
+    environment:
+      #- PMA_ARBITRARY=1
+      - PMA_HOST=mysql
+      - PMA_PORT=3306
+      - PMA_USER=mikeintoshaio
+      - PMA_PASSWORD=mikeintoshaio
+      - MAX_EXECUTION_TIME=3600
+      - MEMORY_LIMIT=1024M
+      - UPLOAD_LIMIT=100M
+  wordpress:
+    image: docker.io/bitnami/wordpress:latest
+    restart: always
+    ports:
+      - '8008:8080'
+      - '8443:8443'
+    volumes:
+      #- 'wordpress_data:/bitnami/wordpress'
+      - './mikeintoshwebdata:/bitnami/wordpress'
+      #- '/your/remote/path:/bitnami/wordpress'    #used only for remote dev uncomment the script to deploy to remote
+    depends_on:
+      - mysql
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+      - WORDPRESS_DATABASE_HOST=mysql
+      - WORDPRESS_DATABASE_PORT_NUMBER=3306
+      - WORDPRESS_DATABASE_USER=mikeintoshaio
+      - WORDPRESS_DATABASE_NAME=mikeintoshaio
+      - WORDPRESS_DATABASE_PASSWORD=mikeintoshaio
+      - WORDPRESS_BLOG_NAME='MIKEINTOSH SYSTEMS'
+      #- WORDPRESS_DATA_TO_PERSIST="wp-config.php wp-content"
+      #- WORDPRESS_DATA_TO_PERSIST=yes
+      - WORDPRESS_TABLE_PREFIX=ms_
+    #restart: always
+volumes:
+  mysql_data:
+    driver: local
+  wordpress_data:
+    driver: local
