@@ -1,0 +1,41 @@
+# Use the latest 2.1 version of CircleCI pipeline process engine.
+# See: https://circleci.com/docs/configuration-reference
+version: 2.1
+orbs:
+  docker: circleci/docker@1.7.0
+# Define a job to be invoked later in a workflow.
+# See: https://circleci.com/docs/configuration-reference/#jobs
+
+
+jobs:
+  docker-compose-starting:
+    # Specify the execution environment. You can specify an image from Docker Hub or use one of our convenience images from CircleCI's Developer Hub.
+    # See: https://circleci.com/docs/configuration-reference/#executor-job
+    docker:
+      - image: cimg/base:stable
+    # Add steps to the job
+    # See: https://circleci.com/docs/configuration-reference/#steps
+    steps:
+      - checkout
+      - run:
+          name: "MIKEINTOSH SYSTEMS App Build"
+          command: "echo MIKEINTOSH SYSTEMS WebApp is being Built!"
+
+# Orchestrate jobs using workflows
+# See: https://circleci.com/docs/configuration-reference/#workflows
+steps:
+      - checkout
+      - docker/setup-build-environment
+      - run:
+          name: Install Docker Compose
+          command: |
+            sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+            sudo chmod +x /usr/local/bin/docker-compose
+      - run:
+          name: Build and run Docker Compose
+          command: |
+            docker-compose up -d
+workflows:
+  compose-up-workflow:
+    jobs:
+      - docker-compose-starting
