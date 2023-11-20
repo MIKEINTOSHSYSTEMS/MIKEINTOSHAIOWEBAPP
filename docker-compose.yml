@@ -11,7 +11,7 @@ services:
        # source: ./mikeintoshsqldata #used only for local dev uncomment the script to deploy to local
         #target: /bitnami/mysql  #used only for local dev uncomment the script to deploy to local
 
-      - 'mysql_data:/bitnami/mysql'  #no use and is only for duplicate mount point 
+      #- 'mysql_data:/bitnami/mysql'  #no use and is only for duplicate mount point 
       #- '/your/remote/path:/bitnami/mysql'   #used only for remote dev uncomment the script to deploy to remote
       - './mikeintoshsqldata:/bitnami/mysql'
     environment:
