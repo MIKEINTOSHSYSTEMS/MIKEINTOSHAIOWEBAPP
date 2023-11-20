@@ -1,0 +1,22 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Change working directory to parent
+      run: cd ../
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag mikeintosh-aio-webapp:$(date +%s)
+    - name: Run Docker Compose
+      run: docker-compose up -d
