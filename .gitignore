@@ -5,44 +5,44 @@
 #
 # Note: if you want to stage/commit WP core files
 # you can delete this whole section/until Configuration.
-/mikeintoshwebdata/wp-admin/
-/mikeintoshwebdata/wp-content/index.php
-/mikeintoshwebdata/wp-content/languages
-/mikeintoshwebdata/wp-content/plugins/index.php
-/mikeintoshwebdata/wp-content/themes/index.php
-/mikeintoshwebdata/wp-includes/
-/mikeintoshwebdata/index.php
-/mikeintoshwebdata/license.txt
-/mikeintoshwebdata/readme.html
-/mikeintoshwebdata/wp-*.php
-/mikeintoshwebdata/xmlrpc.php
+./mikeintoshwebdata/wp-admin/
+./mikeintoshwebdata/wp-content/index.php
+./mikeintoshwebdata/wp-content/languages
+./mikeintoshwebdata/wp-content/plugins/index.php
+./mikeintoshwebdata/wp-content/themes/index.php
+./mikeintoshwebdata/wp-includes/
+./mikeintoshwebdata/index.php
+./mikeintoshwebdata/license.txt
+./mikeintoshwebdata/readme.html
+./mikeintoshwebdata/wp-*.php
+./mikeintoshwebdata/xmlrpc.php
 
 # Configuration
-/mikeintoshwebdata/wp-config.php
+./mikeintoshwebdata/wp-config.php
 
 # Example themes
-/mikeintoshwebdata/wp-content/themes/twenty*/
+./mikeintoshwebdata/wp-content/themes/twenty*/
 
 # Example plugin
-/mikeintoshwebdata/wp-content/plugins/hello.php
+./mikeintoshwebdata/wp-content/plugins/hello.php
 
 # Uploads
-/mikeintoshwebdata/wp-content/uploads/
+./mikeintoshwebdata/wp-content/uploads/
 
 # Log files
 *.log
 
 # htaccess
-/mikeintoshwebdata/.htaccess
+./mikeintoshwebdata/.htaccess
 
 # All plugins
 #
 # Note: If you wish to whitelist plugins,
 # uncomment the next line
-/mikeintoshwebdata/wp-content/plugins
+./mikeintoshwebdata/wp-content/plugins
 
 # All themes
 #
 # Note: If you wish to whitelist themes,
 # uncomment the next line
-/mikeintoshwebdata/wp-content/themes
+./mikeintoshwebdata/wp-content/themes
