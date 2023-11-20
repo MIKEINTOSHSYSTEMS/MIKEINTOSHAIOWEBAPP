@@ -13,7 +13,7 @@ services:
 
       - 'mysql_data:/bitnami/mysql'  #no use and is only for duplicate mount point 
       #- '/your/remote/path:/bitnami/mysql'   #used only for remote dev uncomment the script to deploy to remote
-      - './mikeintoshwebdata:/bitnami/mysql'
+      - './mikeintoshsqldata:/bitnami/mysql'
     environment:
       - ALLOW_EMPTY_PASSWORD=yes
       - MYSQL_USER=mikeintoshaio
