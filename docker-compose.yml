@@ -15,6 +15,13 @@ services:
       #- '/your/remote/path:/bitnami/mysql'   #used only for remote dev uncomment the script to deploy to remote
       - './mikeintoshsqldata:/bitnami/mysql'
     environment:
+      #sql client server admin configs
+      - MYSQL_CLIENT_FLAVOR=mysql
+      - MYSQL_CLIENT_DATABASE_HOST=mysql
+      - MYSQL_CLIENT_DATABASE_PORT_NUMBER=3306
+      - MYSQL_CLIENT_DATABASE_ROOT_USER=mikeintoshaio
+      - MYSQL_CLIENT_DATABASE_ROOT_PASSWORD=mikeintoshaio
+      #sql app user configs
       - ALLOW_EMPTY_PASSWORD=yes
       - MYSQL_USER=mikeintoshaio
       - MYSQL_DATABASE=mikeintoshaio
